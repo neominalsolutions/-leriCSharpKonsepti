@@ -6,8 +6,9 @@ public class Program
   static void Main(string[] args)
   {
     Console.WriteLine("Hello World!");
-    DelegateSamples01();
-    DelegateSamples02();
+    //DelegateSamples01();
+    //DelegateSamples02();
+    DelegateSample03();
 
   }
 
@@ -90,6 +91,25 @@ public class Program
 
     #endregion
   }
+
+
+  // Lamda ifadelerde Where ile kullanım örneği ve Predicate ile kullanım örneği
+  // Predicate Nedir ? Predicate genel olarak bir koşul ifadesi belirtir ve bu koşul ifadesine uyan tüm elemanları döndürür.
+  public static void DelegateSample03()
+  {
+
+    List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    Func<int, bool> isOdd = x =>
+    {
+      return x % 2 != 0;
+    };
+
+    // tek sayıların filtrelenmesi
+    numbers.Where(isOdd).ToList().ForEach(x => Console.WriteLine(x));
+
+
+  }
+
 
   // Delegate başka bir methoda paramete olarak gönderilebilir.
   // bu durumda işlem sonrası iş akışını devam ettirebiliriz.
