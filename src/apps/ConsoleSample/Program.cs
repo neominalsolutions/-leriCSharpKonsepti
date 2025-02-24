@@ -6,10 +6,27 @@ public class Program
   static void Main(string[] args)
   {
     Console.WriteLine("Hello World!");
+    DelegateSamples01();
+    DelegateSamples02();
 
+  }
+
+  public static void DelegateSamples01()
+  {
+    // Delegate Sample.SendEmail methodundan sorumlu olsun
+    MessageHandler del = Sample.SendEmail;
+    del += Sample.SendSms; // multicast kullanım örneği
+    del("Message1");
+
+    del -= Sample.SendEmail; // subscription kaldırma
+    del("Message2");
+
+  }
+
+  public static void DelegateSamples02()
+  {
     #region Delagates
 
-    DelegateSamples();
 
     MessageHandler del2 = Sample.SendEmail;
     del2 += Sample.SendSms; // Subscription
@@ -24,11 +41,11 @@ public class Program
     var del = (MessageHandler)Delegate.CreateDelegate(typeof(MessageHandler), typeof(Sample), methodName);
 
     // Bu bağımlı bir sürüdülebilir olmayan bir kod örneği
-    if(methodName == "SendSMS")
+    if (methodName == "SendSMS")
     {
       Sample.SendSms("Test");
     }
-    else if(methodName == "SendEmail")
+    else if (methodName == "SendEmail")
     {
       Sample.SendEmail("Test");
     }
@@ -41,20 +58,18 @@ public class Program
 
     del.DynamicInvoke(message);
 
-    #endregion
-
 
     // Not: dışardında içerisine parametre alan ve void dönüş tipi için kullanılan bir delegate türüdür. 
     Action<string, string> concat = (x, y) => {
       Console.WriteLine($"{x} {y}");
-    }; 
+    };
     concat("Hello", "World");
 
     //List<string> names = new List<string> { "Ali", "Veli", "Deli" };
     //names.ForEach(x => Console.WriteLine(x));
 
     // Function delegate Action delegateden tek farkı geriye bir değer döndürmesidir.
-    Func<int,int,double> avg = (x, y) => (x + y) / 2;
+    Func<int, int, double> avg = (x, y) => (x + y) / 2;
     double result = avg(9, 6);
     Console.WriteLine(result);
 
@@ -73,19 +88,7 @@ public class Program
     Log(concat);
 
 
-
-  }
-
-  public static void DelegateSamples()
-  {
-    // Delegate Sample.SendEmail methodundan sorumlu olsun
-    MessageHandler del = Sample.SendEmail;
-    del += Sample.SendSms; // multicast kullanım örneği
-    del("Message1");
-
-    del -= Sample.SendEmail; // subscription kaldırma
-    del("Message2");
-
+    #endregion
   }
 
   // Delegate başka bir methoda paramete olarak gönderilebilir.
@@ -103,6 +106,8 @@ public class Program
     callback("Hello","Word");
     Console.WriteLine("Log ended");
   }
+
+
 }
 
 
