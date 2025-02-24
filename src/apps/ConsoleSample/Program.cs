@@ -1,5 +1,10 @@
 ﻿
 using ConsoleSample.Delagates;
+using ConsoleSample.Events;
+using ConsoleSample.Models;
+using ConsoleSample.Services;
+using ConsoleSample.Subscribers;
+using static ConsoleSample.Best.EventDrivenSample;
 
 public class Program
 {
@@ -8,8 +13,9 @@ public class Program
     Console.WriteLine("Hello World!");
     //DelegateSamples01();
     //DelegateSamples02();
-    DelegateSample03();
-
+    // DelegateSample03();
+    // EventDrivenSample();
+    EventDriveSample02();
   }
 
   public static void DelegateSamples01()
@@ -132,6 +138,41 @@ public class Program
   }
 
 
+  public static void EventDrivenSample()
+  {
+    EventPublisher publisher = new();
+    //publisher.Event += Publisher_Event; // Subscriber tanımı => delegate ile hangi methodların çalışacağını belirledik.
+
+    TestEventEmailSubscriber sub1 = new();
+    TestEventLogSubsciber sub2 = new();
+
+    publisher.Event += sub1.Subscribe; // Artık event fırlatıldığında yukarıdaki subscription nesnelerine ait methodlar tetiklenecektir.
+    publisher.Event += sub2.Subscribe;
+
+
+    TestEvent @event = new (){ Name = "Test1" };
+
+    publisher.Publish(@event);
+
+    // Unsubscribe
+    publisher.Event -= sub1.Subscribe;
+
+    publisher.Publish(@event);
+
+  }
+
+
+  public static void EventDriveSample02()
+  {
+    ProductService productService = new();
+    productService.ChangePrice(1, 500);
+
+  }
+
+  private static void Publisher_Event(IEvent args)
+  {
+    Console.WriteLine(((TestEvent)args).Name);
+  }
 }
 
 
