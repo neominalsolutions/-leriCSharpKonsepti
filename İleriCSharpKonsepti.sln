@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{030F4CA1-F08
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{798B81A8-9619-4714-BFF0-F170524D6463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleSample", "src\apps\ConsoleSample\ConsoleSample.csproj", "{70172E7F-75E9-4108-992B-3E2092F3084A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleSample", "src\apps\ConsoleSample\ConsoleSample.csproj", "{70172E7F-75E9-4108-992B-3E2092F3084A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{7525E1D4-BE63-4DCE-8DB7-2C7EF9AEF551}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{798B81A8-9619-4714-BFF0-F170524D6463} = {030F4CA1-F084-4108-B39C-34FCA911A9AC}
 		{70172E7F-75E9-4108-992B-3E2092F3084A} = {798B81A8-9619-4714-BFF0-F170524D6463}
+		{7525E1D4-BE63-4DCE-8DB7-2C7EF9AEF551} = {030F4CA1-F084-4108-B39C-34FCA911A9AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2F201428-0CE1-47A7-8E0C-C993CE9D129B}
