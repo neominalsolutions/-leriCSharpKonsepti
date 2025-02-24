@@ -98,7 +98,11 @@ public class Program
   public static void DelegateSample03()
   {
 
-    List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // en yeni
+    List<int> numbers2 = new List<int>(); // en eski
+    List<int> numbers3 = new(); // 2.en yeni
+    var numbers4 = new List<int>(); // var eski bir kısa yazım şeklidir.
+
     Func<int, bool> isOdd = x =>
     {
       return x % 2 != 0;
